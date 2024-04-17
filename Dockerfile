@@ -35,6 +35,8 @@ RUN git -c init.defaultBranch=main init && \
     git fetch --depth 1 origin "${VAULT_VERSION}" && \
     git -c advice.detachedHead=false checkout FETCH_HEAD
 
+RUN npm ci
+
 COPY --chown=node:node patches /patches
 COPY --chown=node:node resources /resources
 COPY --chown=node:node scripts/apply_patches.sh /apply_patches.sh
@@ -42,7 +44,6 @@ COPY --chown=node:node scripts/apply_patches.sh /apply_patches.sh
 RUN bash /apply_patches.sh
 
 # Build
-RUN npm ci
 
 # Switch to the web apps folder
 WORKDIR /vault/apps/web

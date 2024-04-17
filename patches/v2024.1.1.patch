@@ -251,72 +251,6 @@ index 6029cfd833..04324b7d19 100644
        <input bitInput type="email" formControlName="billingEmail" />
      </bit-form-field>
      <bit-form-field class="tw-w-1/2" *ngIf="isProvider">
-diff --git a/apps/web/src/app/admin-console/organizations/manage/user-confirm.component.html b/apps/web/src/app/admin-console/organizations/manage/user-confirm.component.html
-index 1ee616f8bd..6d9e40b0c9 100644
---- a/apps/web/src/app/admin-console/organizations/manage/user-confirm.component.html
-+++ b/apps/web/src/app/admin-console/organizations/manage/user-confirm.component.html
-@@ -18,7 +18,7 @@
-       <div class="modal-body">
-         <p>
-           {{ "fingerprintEnsureIntegrityVerify" | i18n }}
--          <a href="https://bitwarden.com/help/fingerprint-phrase/" target="_blank" rel="noopener">
-+          <a href="https://localhost/" target="_blank" rel="noopener">
-             {{ "learnMore" | i18n }}</a
-           >
-         </p>
-diff --git a/apps/web/src/app/admin-console/organizations/members/components/bulk/bulk-confirm.component.html b/apps/web/src/app/admin-console/organizations/members/components/bulk/bulk-confirm.component.html
-index 27bb77df17..f191fb9684 100644
---- a/apps/web/src/app/admin-console/organizations/members/components/bulk/bulk-confirm.component.html
-+++ b/apps/web/src/app/admin-console/organizations/members/components/bulk/bulk-confirm.component.html
-@@ -28,7 +28,7 @@
-         <ng-container *ngIf="!loading && !done">
-           <p>
-             {{ "fingerprintEnsureIntegrityVerify" | i18n }}
--            <a href="https://bitwarden.com/help/fingerprint-phrase/" target="_blank" rel="noopener">
-+            <a href="https://localhost/help/fingerprint-phrase/" target="_blank" rel="noopener">
-               {{ "learnMore" | i18n }}</a
-             >
-           </p>
-diff --git a/apps/web/src/app/admin-console/organizations/members/components/member-dialog/member-dialog.component.html b/apps/web/src/app/admin-console/organizations/members/components/member-dialog/member-dialog.component.html
-index b53cba9c26..0b29455b83 100644
---- a/apps/web/src/app/admin-console/organizations/members/components/member-dialog/member-dialog.component.html
-+++ b/apps/web/src/app/admin-console/organizations/members/components/member-dialog/member-dialog.component.html
-@@ -39,7 +39,7 @@
-                 target="_blank"
-                 rel="noopener"
-                 appA11yTitle="{{ 'learnMore' | i18n }}"
--                href="https://bitwarden.com/help/user-types-access-control/"
-+                href="https://localhost/help/user-types-access-control/"
-               >
-                 <i class="bwi bwi-question-circle" aria-hidden="true"></i>
-               </a>
-@@ -126,7 +126,7 @@
-                 <ng-container *ngIf="!canUseCustomPermissions; else enterprise">
-                   <div class="text-base tw-block tw-font-normal tw-text-muted">
-                     {{ "customDescNonEnterpriseStart" | i18n
--                    }}<a href="https://bitwarden.com/contact/" target="_blank">{{
-+                    }}<a href="https://localhost/contact/" target="_blank">{{
-                       "customDescNonEnterpriseLink" | i18n
-                     }}</a
-                     >{{ "customDescNonEnterpriseEnd" | i18n }}
-@@ -375,7 +375,7 @@
-                 target="_blank"
-                 rel="noopener"
-                 appA11yTitle="{{ 'learnMore' | i18n }}"
--                href="https://bitwarden.com/help/manage-your-organization/#access-to-secrets-manager"
-+                href="https://localhost/help/manage-your-organization/#access-to-secrets-manager"
-               >
-                 <i class="bwi bwi-question-circle" aria-hidden="true"></i>
-               </a>
-@@ -420,7 +420,7 @@
-                   target="_blank"
-                   rel="noopener"
-                   appA11yTitle="{{ 'learnMore' | i18n }}"
--                  href="https://bitwarden.com/help/user-types-access-control/#access-control"
-+                  href="https://localhost/help/user-types-access-control/#access-control"
-                 >
-                   <i class="bwi bwi-question-circle" aria-hidden="true"></i>
-                 </a>
 diff --git a/apps/web/src/app/admin-console/organizations/settings/account.component.html b/apps/web/src/app/admin-console/organizations/settings/account.component.html
 index 83e0e35cf3..9385c4071c 100644
 --- a/apps/web/src/app/admin-console/organizations/settings/account.component.html
@@ -355,17 +289,10 @@ index e7eb29a3ac..2305ee9f9a 100644
        <i
          class="bwi bwi-spinner bwi-spin bwi-2x text-muted"
 diff --git a/apps/web/src/app/app.component.ts b/apps/web/src/app/app.component.ts
-index 1f7d8cc2f1..ee84200850 100644
+index 1f7d8cc2f1..2bfec420ab 100644
 --- a/apps/web/src/app/app.component.ts
 +++ b/apps/web/src/app/app.component.ts
-@@ -176,12 +176,16 @@ export class AppComponent implements OnDestroy, OnInit {
-             });
-             if (emailVerificationConfirmed) {
-               this.platformUtilsService.launchUri(
--                "https://bitwarden.com/help/create-bitwarden-account/",
-+                "https://localhost/",
-               );
-             }
+@@ -182,6 +182,10 @@ export class AppComponent implements OnDestroy, OnInit {
              break;
            }
            case "showToast":
@@ -465,50 +392,6 @@ index 72315b1a4d..6035e02e3e 100644
        <p class="tw-mx-4 tw-mb-4 tw-mt-3 tw-text-center tw-text-xl">
          {{ "loginOrCreateNewAccount" | i18n }}
        </p>
-diff --git a/apps/web/src/app/auth/migrate-encryption/migrate-legacy-encryption.component.html b/apps/web/src/app/auth/migrate-encryption/migrate-legacy-encryption.component.html
-index 2fdb4711cd..7f96447034 100644
---- a/apps/web/src/app/auth/migrate-encryption/migrate-legacy-encryption.component.html
-+++ b/apps/web/src/app/auth/migrate-encryption/migrate-legacy-encryption.component.html
-@@ -8,7 +8,7 @@
-         <p>
-           {{ "updateEncryptionSchemeDesc" | i18n }}
-           <a
--            href="https://bitwarden.com/help/account-encryption-key/#rotate-your-encryption-key"
-+            href="https://localhost/help/account-encryption-key/#rotate-your-encryption-key"
-             target="_blank"
-             rel="noopener"
-             >{{ "learnMore" | i18n }}</a
-diff --git a/apps/web/src/app/auth/recover-two-factor.component.html b/apps/web/src/app/auth/recover-two-factor.component.html
-index 744ce3dae1..049395046d 100644
---- a/apps/web/src/app/auth/recover-two-factor.component.html
-+++ b/apps/web/src/app/auth/recover-two-factor.component.html
-@@ -7,7 +7,7 @@
-           <p>
-             {{ "recoverAccountTwoStepDesc" | i18n }}
-             <a
--              href="https://bitwarden.com/help/lost-two-step-device/"
-+              href="https://localhost/help/lost-two-step-device/"
-               target="_blank"
-               rel="noopener"
-               >{{ "learnMore" | i18n }}</a
-diff --git a/apps/web/src/app/auth/register-form/register-form.component.html b/apps/web/src/app/auth/register-form/register-form.component.html
-index a646d5e9a7..933aeccfe8 100644
---- a/apps/web/src/app/auth/register-form/register-form.component.html
-+++ b/apps/web/src/app/auth/register-form/register-form.component.html
-@@ -115,11 +115,11 @@
- 
-       <bit-label for="register-form-input-accept-policies">
-         {{ "acceptPolicies" | i18n }}<br />
--        <a href="https://bitwarden.com/terms/" target="_blank" rel="noopener">{{
-+        <a href="https://localhost/terms/" target="_blank" rel="noopener">{{
-           "termsOfService" | i18n
-         }}</a
-         >,
--        <a href="https://bitwarden.com/privacy/" target="_blank" rel="noopener">{{
-+        <a href="https://localhost/privacy/" target="_blank" rel="noopener">{{
-           "privacyPolicy" | i18n
-         }}</a>
-       </bit-label>
 diff --git a/apps/web/src/app/auth/remove-password.component.html b/apps/web/src/app/auth/remove-password.component.html
 index 19e0d63572..d955ff10ae 100644
 --- a/apps/web/src/app/auth/remove-password.component.html
@@ -521,93 +404,6 @@ index 19e0d63572..d955ff10ae 100644
      <p class="text-center">
        <i
          class="bwi bwi-spinner bwi-spin bwi-2x text-muted"
-diff --git a/apps/web/src/app/auth/settings/change-password.component.html b/apps/web/src/app/auth/settings/change-password.component.html
-index 37a4ad5b59..e4cdcff675 100644
---- a/apps/web/src/app/auth/settings/change-password.component.html
-+++ b/apps/web/src/app/auth/settings/change-password.component.html
-@@ -101,7 +101,7 @@
-         {{ "rotateAccountEncKey" | i18n }}
-       </label>
-       <a
--        href="https://bitwarden.com/help/account-encryption-key/#rotate-your-encryption-key"
-+        href="https://localhost/help/account-encryption-key/#rotate-your-encryption-key"
-         target="_blank"
-         rel="noopener"
-         appA11yTitle="{{ 'learnMore' | i18n }}"
-diff --git a/apps/web/src/app/auth/settings/change-password.component.ts b/apps/web/src/app/auth/settings/change-password.component.ts
-index 8ef5725007..bd070689d7 100644
---- a/apps/web/src/app/auth/settings/change-password.component.ts
-+++ b/apps/web/src/app/auth/settings/change-password.component.ts
-@@ -106,7 +106,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
- 
-         if (learnMore) {
-           this.platformUtilsService.launchUri(
--            "https://bitwarden.com/help/attachments/#add-storage-space",
-+            "https://localhost/help/attachments/#add-storage-space",
-           );
-         }
-         this.rotateUserKey = false;
-diff --git a/apps/web/src/app/auth/settings/emergency-access/confirm/emergency-access-confirm.component.html b/apps/web/src/app/auth/settings/emergency-access/confirm/emergency-access-confirm.component.html
-index 1ee616f8bd..d43ef41422 100644
---- a/apps/web/src/app/auth/settings/emergency-access/confirm/emergency-access-confirm.component.html
-+++ b/apps/web/src/app/auth/settings/emergency-access/confirm/emergency-access-confirm.component.html
-@@ -18,7 +18,7 @@
-       <div class="modal-body">
-         <p>
-           {{ "fingerprintEnsureIntegrityVerify" | i18n }}
--          <a href="https://bitwarden.com/help/fingerprint-phrase/" target="_blank" rel="noopener">
-+          <a href="https://localhost/help/fingerprint-phrase/" target="_blank" rel="noopener">
-             {{ "learnMore" | i18n }}</a
-           >
-         </p>
-diff --git a/apps/web/src/app/auth/settings/emergency-access/emergency-access-add-edit.component.html b/apps/web/src/app/auth/settings/emergency-access/emergency-access-add-edit.component.html
-index b3590f8fb0..5b90c68541 100644
---- a/apps/web/src/app/auth/settings/emergency-access/emergency-access-add-edit.component.html
-+++ b/apps/web/src/app/auth/settings/emergency-access/emergency-access-add-edit.component.html
-@@ -51,7 +51,7 @@
-             target="_blank"
-             rel="noopener"
-             appA11yTitle="{{ 'learnMore' | i18n }}"
--            href="https://bitwarden.com/help/emergency-access/#user-access"
-+            href="https://localhost/help/emergency-access/#user-access"
-           >
-             <i class="bwi bwi-question-circle" aria-hidden="true"></i>
-           </a>
-diff --git a/apps/web/src/app/auth/settings/emergency-access/emergency-access.component.html b/apps/web/src/app/auth/settings/emergency-access/emergency-access.component.html
-index 4f2bf3b875..07d08ea429 100644
---- a/apps/web/src/app/auth/settings/emergency-access/emergency-access.component.html
-+++ b/apps/web/src/app/auth/settings/emergency-access/emergency-access.component.html
-@@ -3,7 +3,7 @@
- </div>
- <p>
-   {{ "emergencyAccessDesc" | i18n }}
--  <a href="https://bitwarden.com/help/emergency-access/" target="_blank" rel="noopener">
-+  <a href="https://localhost/help/emergency-access/" target="_blank" rel="noopener">
-     {{ "learnMore" | i18n }}.
-   </a>
- </p>
-diff --git a/apps/web/src/app/auth/settings/security/change-kdf/change-kdf.component.html b/apps/web/src/app/auth/settings/security/change-kdf/change-kdf.component.html
-index 5ffe3a5f19..7abc2c06d6 100644
---- a/apps/web/src/app/auth/settings/security/change-kdf/change-kdf.component.html
-+++ b/apps/web/src/app/auth/settings/security/change-kdf/change-kdf.component.html
-@@ -9,7 +9,7 @@
-         <label for="kdf">{{ "kdfAlgorithm" | i18n }}</label>
-         <a
-           class="ml-auto"
--          href="https://bitwarden.com/help/kdf-algorithms"
-+          href="https://localhost/help/kdf-algorithms"
-           target="_blank"
-           rel="noopener"
-           appA11yTitle="{{ 'learnMore' | i18n }}"
-@@ -47,7 +47,7 @@
-           <label for="kdfIterations">{{ "kdfIterations" | i18n }}</label>
-           <a
-             class="ml-auto"
--            href="https://bitwarden.com/help/what-encryption-is-used/#changing-kdf-iterations"
-+            href="https://localhost/help/what-encryption-is-used/#changing-kdf-iterations"
-             target="_blank"
-             rel="noopener"
-             appA11yTitle="{{ 'learnMore' | i18n }}"
 diff --git a/apps/web/src/app/auth/settings/two-factor-authenticator.component.ts b/apps/web/src/app/auth/settings/two-factor-authenticator.component.ts
 index 849e003440..e8d9c40eb4 100644
 --- a/apps/web/src/app/auth/settings/two-factor-authenticator.component.ts
@@ -626,19 +422,6 @@ index 849e003440..e8d9c40eb4 100644
          size: 160,
        });
      }, 100);
-diff --git a/apps/web/src/app/auth/settings/webauthn-login-settings/webauthn-login-settings.component.html b/apps/web/src/app/auth/settings/webauthn-login-settings/webauthn-login-settings.component.html
-index e65899e05e..2425deea12 100644
---- a/apps/web/src/app/auth/settings/webauthn-login-settings/webauthn-login-settings.component.html
-+++ b/apps/web/src/app/auth/settings/webauthn-login-settings/webauthn-login-settings.component.html
-@@ -25,7 +25,7 @@
- </h2>
- <p bitTypography="body1">
-   {{ "loginWithPasskeyInfo" | i18n }}
--  <a bitLink href="https://bitwarden.com/help/login-with-passkeys">{{
-+  <a bitLink href="https://localhost/help/login-with-passkeys">{{
-     "learnMoreAboutPasswordless" | i18n
-   }}</a>
- </p>
 diff --git a/apps/web/src/app/auth/sso.component.html b/apps/web/src/app/auth/sso.component.html
 index fb56cead24..d1553196b0 100644
 --- a/apps/web/src/app/auth/sso.component.html
@@ -821,19 +604,6 @@ index 9e0aad8b38..2cd3f3a1b9 100644
      <p class="text-center">
        <i
          class="bwi bwi-spinner bwi-spin bwi-2x text-muted"
-diff --git a/apps/web/src/app/billing/organizations/download-license.component.html b/apps/web/src/app/billing/organizations/download-license.component.html
-index c082a3ab5e..e4ebd58c38 100644
---- a/apps/web/src/app/billing/organizations/download-license.component.html
-+++ b/apps/web/src/app/billing/organizations/download-license.component.html
-@@ -13,7 +13,7 @@
-             target="_blank"
-             rel="noopener"
-             appA11yTitle="{{ 'learnMore' | i18n }}"
--            href="https://bitwarden.com/help/licensing-on-premise/#organization-account-sharing"
-+            href="https://localhost/help/licensing-on-premise/#organization-account-sharing"
-           >
-             <i class="bwi bwi-question-circle" aria-hidden="true"></i>
-           </a>
 diff --git a/apps/web/src/app/billing/organizations/organization-billing-history-view.component.ts b/apps/web/src/app/billing/organizations/organization-billing-history-view.component.ts
 index 78872aa6a9..eed953b91a 100644
 --- a/apps/web/src/app/billing/organizations/organization-billing-history-view.component.ts
@@ -932,38 +702,11 @@ index dd246b5f75..9fe48eaa3f 100644
  
      if (this.hasProvider) {
        const providerRequest = new ProviderOrganizationCreateRequest(
-diff --git a/apps/web/src/app/billing/organizations/organization-subscription-selfhost.component.html b/apps/web/src/app/billing/organizations/organization-subscription-selfhost.component.html
-index de63f5e349..2d072f5543 100644
---- a/apps/web/src/app/billing/organizations/organization-subscription-selfhost.component.html
-+++ b/apps/web/src/app/billing/organizations/organization-subscription-selfhost.component.html
-@@ -37,7 +37,7 @@
-         "subscriptionExpiration" | i18n
-       }}</span>
-       <a
--        href="https://bitwarden.com/help/licensing-on-premise/#update-organization-license"
-+        href="https://localhost/help/licensing-on-premise/#update-organization-license"
-         target="_blank"
-         [appA11yTitle]="'licensePaidFeaturesHelp' | i18n"
-         rel="noopener"
-@@ -86,7 +86,7 @@
-         <bit-label
-           >{{ "automaticSync" | i18n }}
-           <a
--            href="https://bitwarden.com/help/families-for-enterprise-self-hosted/"
-+            href="https://localhost/help/families-for-enterprise-self-hosted/"
-             target="_blank"
-             rel="noopener"
-           >
 diff --git a/apps/web/src/app/billing/shared/add-credit.component.html b/apps/web/src/app/billing/shared/add-credit.component.html
-index 73c71812be..bc57cb6251 100644
+index 73c71812be..82e26cadd9 100644
 --- a/apps/web/src/app/billing/shared/add-credit.component.html
 +++ b/apps/web/src/app/billing/shared/add-credit.component.html
-@@ -71,10 +71,10 @@
-   <input type="hidden" name="return" value="{{ returnUrl }}" />
-   <input type="hidden" name="cancel_return" value="{{ returnUrl }}" />
-   <input type="hidden" name="currency_code" value="USD" />
--  <input type="hidden" name="image_url" value="https://bitwarden.com/images/paypal-banner.png" />
-+  <input type="hidden" name="image_url" value="https://localhost/images/paypal-banner.png" />
+@@ -75,6 +75,6 @@
    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHosted" />
    <input type="hidden" name="amount" value="{{ creditAmount }}" />
    <input type="hidden" name="custom" value="{{ ppButtonCustomField }}" />
@@ -1096,7 +839,7 @@ index 72f0f1f1da..f76e52e7ba 100644
 +  </div>
  </div>
 diff --git a/apps/web/src/app/layouts/header/web-header.component.html b/apps/web/src/app/layouts/header/web-header.component.html
-index b736a46d5a..723cc9e67c 100644
+index b736a46d5a..6f7565d748 100644
 --- a/apps/web/src/app/layouts/header/web-header.component.html
 +++ b/apps/web/src/app/layouts/header/web-header.component.html
 @@ -51,7 +51,7 @@
@@ -1108,20 +851,6 @@ index b736a46d5a..723cc9e67c 100644
                  <bit-menu-divider></bit-menu-divider>
                  <span class="tw-break-all tw-px-4 tw-py-1 tw-text-left tw-text-muted">
                    {{ hostname }}
-@@ -64,11 +64,11 @@
-                 <i class="bwi bwi-fw bwi-user" aria-hidden="true"></i>
-                 {{ "accountSettings" | i18n }}
-               </a>
--              <a bitMenuItem href="https://bitwarden.com/help/" target="_blank" rel="noopener">
-+              <a bitMenuItem href="https://localhost/help/" target="_blank" rel="noopener">
-                 <i class="bwi bwi-fw bwi-question-circle" aria-hidden="true"></i>
-                 {{ "getHelp" | i18n }}
-               </a>
--              <a bitMenuItem href="https://bitwarden.com/download/" target="_blank" rel="noopener">
-+              <a bitMenuItem href="https://localhost/download/" target="_blank" rel="noopener">
-                 <i class="bwi bwi-fw bwi-download" aria-hidden="true"></i>
-                 {{ "getApps" | i18n }}
-               </a>
 diff --git a/apps/web/src/app/layouts/header/web-header.stories.ts b/apps/web/src/app/layouts/header/web-header.stories.ts
 index d3efe22cf9..57ad0e2e81 100644
 --- a/apps/web/src/app/layouts/header/web-header.stories.ts
@@ -1136,7 +865,7 @@ index d3efe22cf9..57ad0e2e81 100644
    `,
  });
 diff --git a/apps/web/src/app/layouts/navbar.component.html b/apps/web/src/app/layouts/navbar.component.html
-index 72dd17d0dc..91c6b6d435 100644
+index 72dd17d0dc..7e375397fd 100644
 --- a/apps/web/src/app/layouts/navbar.component.html
 +++ b/apps/web/src/app/layouts/navbar.component.html
 @@ -1,6 +1,6 @@
@@ -1155,7 +884,7 @@ index 72dd17d0dc..91c6b6d435 100644
      <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
        <li>
          <button
-@@ -75,11 +74,16 @@
+@@ -75,7 +74,12 @@
                <i class="bwi bwi-fw bwi-user" aria-hidden="true"></i>
                {{ "accountSettings" | i18n }}
              </a>
@@ -1169,39 +898,6 @@ index 72dd17d0dc..91c6b6d435 100644
                <i class="bwi bwi-fw bwi-question-circle" aria-hidden="true"></i>
                {{ "getHelp" | i18n }}
              </a>
--            <a bitMenuItem href="https://bitwarden.com/download/" target="_blank" rel="noopener">
-+            <a bitMenuItem href="https://localhost/download/" target="_blank" rel="noopener">
-               <i class="bwi bwi-fw bwi-download" aria-hidden="true"></i>
-               {{ "getApps" | i18n }}
-             </a>
-diff --git a/apps/web/src/app/layouts/product-switcher/product-switcher-content.component.ts b/apps/web/src/app/layouts/product-switcher/product-switcher-content.component.ts
-index 4362024be1..d421398b6b 100644
---- a/apps/web/src/app/layouts/product-switcher/product-switcher-content.component.ts
-+++ b/apps/web/src/app/layouts/product-switcher/product-switcher-content.component.ts
-@@ -61,20 +61,20 @@ export class ProductSwitcherContentComponent {
-           name: "Password Manager",
-           icon: "bwi-lock",
-           appRoute: "/vault",
--          marketingRoute: "https://bitwarden.com/products/personal/",
-+          marketingRoute: "https://localhost/products/personal/",
-           isActive: !this.router.url.includes("/sm/"),
-         },
-         sm: {
-           name: "Secrets Manager",
-           icon: "bwi-cli",
-           appRoute: ["/sm", smOrg?.id],
--          marketingRoute: "https://bitwarden.com/products/secrets-manager/",
-+          marketingRoute: "https://localhost/products/secrets-manager/",
-           isActive: this.router.url.includes("/sm/"),
-         },
-         orgs: {
-           name: "Organizations",
-           icon: "bwi-business",
--          marketingRoute: "https://bitwarden.com/products/business/",
-+          marketingRoute: "https://localhost/products/business/",
-         },
-       };
- 
 diff --git a/apps/web/src/app/layouts/product-switcher/product-switcher.stories.ts b/apps/web/src/app/layouts/product-switcher/product-switcher.stories.ts
 index afd79c89c4..707b6516c9 100644
 --- a/apps/web/src/app/layouts/product-switcher/product-switcher.stories.ts
@@ -1228,28 +924,6 @@ index aa4df5de14..af2fae3cd5 100644
        },
        {
          path: "update-temp-password",
-diff --git a/apps/web/src/app/settings/preferences.component.html b/apps/web/src/app/settings/preferences.component.html
-index 83d6ebc4b5..3286246dc7 100644
---- a/apps/web/src/app/settings/preferences.component.html
-+++ b/apps/web/src/app/settings/preferences.component.html
-@@ -73,7 +73,7 @@
-           <label for="locale">{{ "language" | i18n }}</label>
-           <a
-             class="ml-auto"
--            href="https://bitwarden.com/help/localization/"
-+            href="https://localhost/help/localization/"
-             target="_blank"
-             rel="noopener"
-             appA11yTitle="{{ 'learnMore' | i18n }}"
-@@ -101,7 +101,7 @@
-         {{ "enableFavicon" | i18n }}
-       </label>
-       <a
--        href="https://bitwarden.com/help/website-icons/"
-+        href="https://localhost/help/website-icons/"
-         target="_blank"
-         rel="noopener"
-         appA11yTitle="{{ 'learnMore' | i18n }}"
 diff --git a/apps/web/src/app/settings/settings.component.ts b/apps/web/src/app/settings/settings.component.ts
 index 181506607e..2c0223ee32 100644
 --- a/apps/web/src/app/settings/settings.component.ts
@@ -1268,32 +942,6 @@ index 181506607e..2c0223ee32 100644
 +    this.hideSubscription = true;
    }
  }
-diff --git a/apps/web/src/app/shared/components/account-fingerprint/account-fingerprint.component.html b/apps/web/src/app/shared/components/account-fingerprint/account-fingerprint.component.html
-index 035e5d33af..13f054af91 100644
---- a/apps/web/src/app/shared/components/account-fingerprint/account-fingerprint.component.html
-+++ b/apps/web/src/app/shared/components/account-fingerprint/account-fingerprint.component.html
-@@ -3,7 +3,7 @@
-   <p *ngIf="fingerprint">
-     {{ fingerprintLabel }}:
-     <a
--      href="https://bitwarden.com/help/fingerprint-phrase/"
-+      href="https://localhost/help/fingerprint-phrase/"
-       target="_blank"
-       rel="noopener"
-       appA11yTitle="{{ 'learnMore' | i18n }}"
-diff --git a/apps/web/src/app/tools/generator.component.html b/apps/web/src/app/tools/generator.component.html
-index 3a079bcac5..cd3dc699a9 100644
---- a/apps/web/src/app/tools/generator.component.html
-+++ b/apps/web/src/app/tools/generator.component.html
-@@ -251,7 +251,7 @@
-       <label id="usernameTypeHeading">{{ "usernameType" | i18n }}</label>
-       <a
-         class="ml-auto"
--        href="https://bitwarden.com/help/generator/#username-types"
-+        href="https://localhost/help/generator/#username-types"
-         target="_blank"
-         rel="noopener"
-         appA11yTitle="{{ 'learnMore' | i18n }}"
 diff --git a/apps/web/src/app/tools/generator.component.ts b/apps/web/src/app/tools/generator.component.ts
 index ee422ca527..efb91675dd 100644
 --- a/apps/web/src/app/tools/generator.component.ts
@@ -1308,7 +956,7 @@ index ee422ca527..efb91675dd 100644
        this.forwardOptions = this.forwardOptions.filter((forwarder) => forwarder.validForSelfHosted);
      }
 diff --git a/apps/web/src/app/tools/send/access.component.html b/apps/web/src/app/tools/send/access.component.html
-index baff9d1b68..58733cfd68 100644
+index baff9d1b68..cfa8c60738 100644
 --- a/apps/web/src/app/tools/send/access.component.html
 +++ b/apps/web/src/app/tools/send/access.component.html
 @@ -2,7 +2,7 @@
@@ -1320,15 +968,6 @@ index baff9d1b68..58733cfd68 100644
      <div class="tw-mt-5 tw-w-full">
        <h2 bitTypography="h2" class="tw-mb-4 tw-text-center">View Send</h2>
      </div>
-@@ -13,7 +13,7 @@
-       {{ "viewSendHiddenEmailWarning" | i18n }}
-       <a
-         bitLink
--        href="https://bitwarden.com/help/receive-send/"
-+        href="https://localhost/help/receive-send/"
-         target="_blank"
-         rel="noopener noreferrer"
-         >{{ "learnMore" | i18n }}</a
 @@ -69,17 +69,6 @@
      <div class="tw-mt-5 tw-w-10/12 tw-text-center tw-text-muted">
        <p bitTypography="body2" class="tw-mb-0">
@@ -1347,67 +986,6 @@ index baff9d1b68..58733cfd68 100644
        </p>
      </div>
    </div>
-diff --git a/apps/web/src/app/vault/individual-vault/add-edit-custom-fields.component.html b/apps/web/src/app/vault/individual-vault/add-edit-custom-fields.component.html
-index c524f34641..c483120bf8 100644
---- a/apps/web/src/app/vault/individual-vault/add-edit-custom-fields.component.html
-+++ b/apps/web/src/app/vault/individual-vault/add-edit-custom-fields.component.html
-@@ -13,7 +13,7 @@
-           <label for="fieldName{{ i }}">{{ "name" | i18n }}</label>
-           <a
-             class="ml-auto"
--            href="https://bitwarden.com/help/custom-fields/"
-+            href="https://localhost/help/custom-fields/"
-             target="_blank"
-             rel="noopener"
-             appA11yTitle="{{ 'learnMore' | i18n }}"
-diff --git a/apps/web/src/app/vault/individual-vault/add-edit.component.html b/apps/web/src/app/vault/individual-vault/add-edit.component.html
-index d01f2fa22b..fb0391df7d 100644
---- a/apps/web/src/app/vault/individual-vault/add-edit.component.html
-+++ b/apps/web/src/app/vault/individual-vault/add-edit.component.html
-@@ -370,7 +370,7 @@
-                   </label>
-                   <a
-                     class="ml-auto"
--                    href="https://bitwarden.com/help/uri-match-detection/"
-+                    href="https://localhost/help/uri-match-detection/"
-                     target="_blank"
-                     rel="noopener"
-                     appA11yTitle="{{ 'learnMore' | i18n }}"
-@@ -942,7 +942,7 @@
-               target="_blank"
-               rel="noopener"
-               appA11yTitle="{{ 'learnMore' | i18n }}"
--              href="https://bitwarden.com/help/managing-items/#protect-individual-items"
-+              href="https://localhost/help/managing-items/#protect-individual-items"
-             >
-               <i class="bwi bwi-question-circle" aria-hidden="true"></i>
-             </a>
-diff --git a/apps/web/src/app/vault/individual-vault/attachments.component.html b/apps/web/src/app/vault/individual-vault/attachments.component.html
-index a43f3406b1..0e03468a3b 100644
---- a/apps/web/src/app/vault/individual-vault/attachments.component.html
-+++ b/apps/web/src/app/vault/individual-vault/attachments.component.html
-@@ -42,7 +42,7 @@
-                   <a href="#" appStopClick (click)="download(a)">{{ a.fileName }}</a>
-                   <div *ngIf="showFixOldAttachments(a)" class="ml-2">
-                     <a
--                      href="https://bitwarden.com/help/attachments/#fixing-old-attachments"
-+                      href="https://localhost/help/attachments/#fixing-old-attachments"
-                       target="_blank"
-                       rel="noopener"
-                     >
-diff --git a/apps/web/src/app/vault/individual-vault/vault-filter/components/vault-filter.component.html b/apps/web/src/app/vault/individual-vault/vault-filter/components/vault-filter.component.html
-index d2799b0bfa..0ad674e543 100644
---- a/apps/web/src/app/vault/individual-vault/vault-filter/components/vault-filter.component.html
-+++ b/apps/web/src/app/vault/individual-vault/vault-filter/components/vault-filter.component.html
-@@ -7,7 +7,7 @@
-       {{ "filters" | i18n }}
-       <a
-         class="ml-auto"
--        href="https://bitwarden.com/help/searching-vault/"
-+        href="https://localhost/help/searching-vault/"
-         target="_blank"
-         rel="noopener"
-         appA11yTitle="{{ 'learnMore' | i18n }}"
 diff --git a/apps/web/src/app/vault/individual-vault/vault.component.ts b/apps/web/src/app/vault/individual-vault/vault.component.ts
 index 5ca857dae6..bc7568f5f4 100644
 --- a/apps/web/src/app/vault/individual-vault/vault.component.ts
